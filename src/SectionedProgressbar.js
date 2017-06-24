@@ -13,7 +13,7 @@ class SectionedProgressbar extends React.Component {
     const {
       sectionsNumber,
       thickness,
-    } = this.props;
+    } = this.props;    
 
     const angleDeg = getSectionAngle(sectionsNumber);
     const radius = this.calculateRadius();
@@ -21,7 +21,7 @@ class SectionedProgressbar extends React.Component {
 
     const style = {
       fill: 'none',
-      stroke: 'green',
+      stroke: 'red',
       strokeDasharray: `${sectionLength} ${sectionLength}`,
       strokeWidth: 16,
       strokeDashoffset: '5px',
@@ -48,14 +48,14 @@ class SectionedProgressbar extends React.Component {
   }
 }
 
-Circle.proptypes = {
+SectionedProgressbar.proptypes = {
   sectionsNumber: PropTypes.number,
   thickness: PropTypes.number,
 };
 
-Circle.defaultProps = {
+SectionedProgressbar.defaultProps = {
   sectionsNumber: 10,
   thickness: 15,
 };
 
-export default Circle;
+export default SectionedProgressbar;
