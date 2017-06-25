@@ -5,6 +5,7 @@
 .custom .sectionedProgressBar-section {
     stroke: lightgreen;
     stroke-linecap: round;
+    transition: 0.4s ease;
 }
 
 .custom .sectionedProgressBar-section.active {
