@@ -1,3 +1,13 @@
 .sectionedProgressBar-section {
     stroke: red;
 }
+
+.custom .sectionedProgressBar-section {
+    stroke: lightgreen;
+    stroke-linecap: round;
+}
+
+.custom .sectionedProgressBar-section.active {
+    stroke: green;
+    stroke-linecap: round;
+}
