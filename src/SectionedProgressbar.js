@@ -6,25 +6,38 @@ import { getSectionAngle, calculateSectionsCoords } from './utils';
 class SectionedProgressbar extends React.Component {
 
   calculateRadius() {
-    return 90;
+    const { sizePx, thickness } = this.props;
+    return (sizePx - thickness) / 2;
+  }
+
+  calculateRotationAngle() {
+    const { sectionsNumber, sectionsGapPercent } = this.props;
+    return 360 / sectionsNumber / 100 * sectionsGapPercent / 2;
+  }
+
+  calculateGapInPixels(sectionLength) {
+    const { sectionsGapPercent } = this.props;
+    return sectionLength * sectionsGapPercent / 100;
   }
 
   render() {
     const {
       sectionsNumber,
       thickness,
-    } = this.props;    
+      className,
+    } = this.props;
 
-    const angleDeg = getSectionAngle(sectionsNumber);
     const radius = this.calculateRadius();
+    const angleDeg = getSectionAngle(sectionsNumber);
     const sectionLength = Math.PI * radius * (angleDeg / 180);
+
+    const gapPx = this.calculateGapInPixels(sectionLength);
 
     const style = {
       fill: 'none',
-      stroke: 'red',
       strokeDasharray: `${sectionLength} ${sectionLength}`,
-      strokeWidth: 16,
-      strokeDashoffset: '5px',
+      strokeWidth: thickness,
+      strokeDashoffset: `${gapPx}px`,
     };
 
     const centerX = (thickness / 2) + radius;
@@ -33,14 +46,25 @@ class SectionedProgressbar extends React.Component {
     const outputSize = 2 * radius + thickness;
 
     const sectionCoords = calculateSectionsCoords(sectionsNumber, radius, thickness);
+    const rotationAngle = this.calculateRotationAngle();
 
     return (
-      <svg width={`${outputSize}`} height={`${outputSize}`}>
-        <g transform={`rotate(50 ${centerX} ${centerY})`}>
+      <svg
+        className={`sectionedProgressBar ${className}`}
+        width={`${outputSize}`}
+        height={`${outputSize}`}
+      >
+        <g transform={`rotate(${rotationAngle} ${centerX} ${centerY})`}>
           {sectionCoords.map((section) => {
-          const { x0, y0, x, y } = section;
-          return <path d={`M ${x0}, ${y0} A90,90 0 0 1 ${x}, ${y}`} style={style} />;
-        })
+            const { x0, y0, x, y } = section;
+            return (
+              <path
+                d={`M ${x0}, ${y0} A${radius},${radius} 0 0 1 ${x}, ${y}`}
+                className={'sectionedProgressBar-section'}
+                style={style}
+              />
+            );
+          })
         }
         </g>
       </svg>
@@ -48,14 +72,20 @@ class SectionedProgressbar extends React.Component {
   }
 }
 
-SectionedProgressbar.proptypes = {
+SectionedProgressbar.propTypes = {
+  sizePx: PropTypes.number,
   sectionsNumber: PropTypes.number,
   thickness: PropTypes.number,
+  sectionsGapPercent: PropTypes.number,
+  className: PropTypes.string,
 };
 
 SectionedProgressbar.defaultProps = {
+  sizePx: 200,
   sectionsNumber: 10,
   thickness: 15,
+  sectionsGapPercent: 5,
+  className: '',
 };
 
 export default SectionedProgressbar;
