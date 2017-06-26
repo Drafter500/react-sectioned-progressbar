@@ -21,15 +21,27 @@ class DemoPage extends React.Component {
     clearInterval(this.timerId);
   }
 
+  textFormatter(progress) {
+    const { total } = this.state;
+    return (
+      <tspan>
+        <tspan className="">{progress} </tspan>
+        <tspan className="total">{` / ${total}`}</tspan>
+      </tspan>
+    );
+  }
+
   render() {
+    const { total, progress } = this.state;
     return (
       <SectionedProgressbar
         sizePx={300}
         thickness={25}
-        total={this.state.total}
-        progress={this.state.progress}
+        total={total}
+        progress={progress}
         sectionsGapPercent={30}
         className="custom"
+        textFormatter={this.textFormatter.bind(this)}
       />);
   }
 }

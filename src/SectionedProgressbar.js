@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { getSectionAngle, calculateSectionsCoords } from './utils';
 
 
@@ -13,12 +12,12 @@ class SectionedProgressbar extends React.Component {
 
   calculateRotationAngle() {
     const { total, sectionsGapPercent } = this.props;
-    return 360 / total / 100 * sectionsGapPercent / 2;
+    return ((360 / total) * (sectionsGapPercent / 100)) / 2;
   }
 
   calculateGapInPixels(sectionLength) {
     const { sectionsGapPercent } = this.props;
-    return sectionLength * sectionsGapPercent / 100;
+    return (sectionLength * sectionsGapPercent) / 100;
   }
 
   render() {
@@ -27,6 +26,7 @@ class SectionedProgressbar extends React.Component {
       thickness,
       className,
       progress,
+      textFormatter,
     } = this.props;
 
     const radius = this.calculateRadius();
@@ -45,7 +45,7 @@ class SectionedProgressbar extends React.Component {
     const centerX = (thickness / 2) + radius;
     const centerY = (thickness / 2) + radius;
 
-    const outputSize = 2 * radius + thickness;
+    const outputSize = (2 * radius) + thickness;
 
     const sectionCoords = calculateSectionsCoords(total, radius, thickness);
     const rotationAngle = this.calculateRotationAngle();
@@ -60,16 +60,24 @@ class SectionedProgressbar extends React.Component {
           {sectionCoords.map((section, i) => {
             const { x0, y0, x, y } = section;
             const sectionDone = i < progress;
+            const activeClass = sectionDone ? ' active' : '';
             return (
               <path
                 d={`M ${x0}, ${y0} A${radius},${radius} 0 0 1 ${x}, ${y}`}
-                className={classnames('sectionedProgressBar-section', { active: sectionDone })}
+                className={`sectionedProgressBar-section${activeClass}`}
                 style={style}
               />
             );
           })
         }
         </g>
+        <text
+          className="sectionedProgressBar-text"
+          x={radius + thickness / 2}
+          y={radius + thickness / 2}
+        >
+          {textFormatter(progress)}
+        </text>
       </svg>
     );
   }

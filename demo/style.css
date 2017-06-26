@@ -1,11 +1,23 @@
-.sectionedProgressBar-section {
-    stroke: red;
-}
-
 .custom .sectionedProgressBar-section {
     stroke: lightgreen;
     stroke-linecap: round;
-    transition: 0.4s ease;
+}
+
+.custom .sectionedProgressBar-text {
+    font-size: 70px;
+    font-family: Tahoma;
+
+    stroke: green;
+    fill: green;
+    stroke-width: 4px;
+    dominant-baseline: middle;
+    text-anchor: middle;
+}
+
+.custom .sectionedProgressBar-text .total {
+    stroke: lightgreen;
+    fill: lightgreen;
+    stroke-width: 2px;
 }
 
 .custom .sectionedProgressBar-section.active {
