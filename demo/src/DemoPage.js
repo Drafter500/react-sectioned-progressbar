@@ -40,7 +40,7 @@ class DemoPage extends React.Component {
         total={total}
         progress={progress}
         sectionsGapPercent={30}
-        className="custom"
+        className="example1"
         textFormatter={this.textFormatter.bind(this)}
       />);
   }

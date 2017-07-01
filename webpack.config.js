@@ -9,9 +9,9 @@ module.exports = {
   },
   watchOptions: {
     poll: true,
-  }, 
+  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -22,6 +22,30 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.sass$/,
+        use: [
+          {
+            loader: 'style-loader',
+          }, {
+            loader: 'css-loader',
+          }, {
+            loader: 'sass-loader',
+          },
+        ],
+      },
     ],
+    // rules: [{
+    //   test: /\.scss$/,
+    //   use: [
+    //     {
+    //       loader: 'style-loader', // creates style nodes from JS strings
+    //     }, {
+    //       loader: 'css-loader', // translates CSS into CommonJS
+    //     }, {
+    //       loader: 'sass-loader', // compiles Sass to CSS
+    //     },
+    //   ],
+    // }],
   },
 };
