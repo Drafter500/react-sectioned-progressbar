@@ -1,3 +1,11 @@
+$example3-color: #ee5622
+@function fade-color($color)
+	@return desaturate(lighten($color, 30%), 20%)
+
+.showCollection
+	display: flex
+	justify-content: space-around
+
 .example1
 	.sectionedProgressBar-section
 		stroke: lightgreen
@@ -5,7 +13,6 @@
 
 		&.active
 			stroke: green
-			stroke-linecap: round
 
 	.sectionedProgressBar-text
 		font-size: 70px
@@ -14,10 +21,54 @@
 		stroke: green;
 		fill: green
 		stroke-width: 4px
-		dominant-baseline: middle
+		dominant-baseline: central
 		text-anchor: middle
 
 		.total
 			stroke: lightgreen
 			fill: lightgreen
+			stroke-width: 2px
+
+.example2
+	.sectionedProgressBar-section
+		stroke: lightblue
+
+		&.active
+			stroke: blue
+
+	.sectionedProgressBar-text
+		font-size: 70px
+		font-family: "Palatino Linotype"
+
+		stroke: blue;
+		fill: blue
+		stroke-width: 4px
+		dominant-baseline: central
+		text-anchor: middle
+
+		.total
+			stroke: lightblue
+			fill: lightblue
+			stroke-width: 2px
+
+.example3
+	.sectionedProgressBar-section
+		stroke: fade-color($example3-color)
+
+		&.active
+			stroke: $example3-color
+
+	.sectionedProgressBar-text
+		font-size: 70px
+		font-family: "Palatino Linotype"
+
+		stroke: $example3-color;
+		fill: $example3-color
+		stroke-width: 4px
+		dominant-baseline: central
+		text-anchor: middle
+
+		.total
+			stroke: fade-color($example3-color)
+			fill: fade-color($example3-color)
 			stroke-width: 2px

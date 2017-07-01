@@ -73,10 +73,11 @@ class SectionedProgressbar extends React.Component {
         </g>
         <text
           className="sectionedProgressBar-text"
-          x={radius + thickness / 2}
-          y={radius + thickness / 2}
+          x={radius + (thickness / 2)}
+          y={radius + (thickness / 2)}
         >
-          {textFormatter(progress)}
+          {textFormatter && textFormatter(progress)}
+          {this.props.children}
         </text>
       </svg>
     );
@@ -90,6 +91,8 @@ SectionedProgressbar.propTypes = {
   thickness: PropTypes.number,
   sectionsGapPercent: PropTypes.number,
   className: PropTypes.string,
+  textFormatter: PropTypes.func,
+  children: PropTypes.node,
 };
 
 SectionedProgressbar.defaultProps = {
@@ -99,6 +102,8 @@ SectionedProgressbar.defaultProps = {
   thickness: 15,
   sectionsGapPercent: 5,
   className: '',
+  textFormatter: null,
+  children: null,
 };
 
 export default SectionedProgressbar;
