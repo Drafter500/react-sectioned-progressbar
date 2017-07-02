@@ -1,6 +1,5 @@
 # react-sectioned-progressbar
-React sectioned progress bar is a simple SVG based component that draws circular progress made of specified number of sections
-
+Inspired by https://github.com/iqnivek/react-circular-progressbar, I made a different version of circular progress bar. The only big difference is that progress bar is divided by specified number of sections.
 
 ![samples.png](/samples.png?raw=true)
 
