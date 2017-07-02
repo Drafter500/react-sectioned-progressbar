@@ -1,5 +1,6 @@
 # react-sectioned-progressbar
-Inspired by https://github.com/iqnivek/react-circular-progressbar, I made a different version of circular progress bar. The only big difference is that progress bar is divided by specified number of sections.
+Inspired by https://github.com/iqnivek/react-circular-progressbar.
+React sectioned progress bar is an independent variation of circular progress bar. The only big difference is that the progress is divided by specified number of sections.
 
 ![samples.png](/samples.png?raw=true)
 
