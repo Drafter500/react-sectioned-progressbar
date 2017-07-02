@@ -22,14 +22,12 @@ class DemoPage extends React.Component {
   }
 
   textFormatter(total) {
-    return (progress) => {
-      return (
-        <tspan>
+    return progress => (
+      <tspan>
           <tspan className="">{progress} </tspan>
           <tspan className="total">{`/ ${total || this.state.total}`}</tspan>
         </tspan>
       );
-    };
   }
 
   render() {
@@ -37,8 +35,8 @@ class DemoPage extends React.Component {
     return (
       <div className="showCollection">
         <SectionedProgressbar
-          sizePx={300}
-          thickness={25}
+          sizePx={200}
+          thickness={18}
           total={total}
           progress={progress}
           sectionsGapPercent={30}
@@ -46,8 +44,8 @@ class DemoPage extends React.Component {
           textFormatter={this.textFormatter(total)}
         />
         <SectionedProgressbar
-          sizePx={300}
-          thickness={15}
+          sizePx={200}
+          thickness={12}
           total={10}
           progress={3}
           sectionsGapPercent={10}
@@ -55,15 +53,33 @@ class DemoPage extends React.Component {
           textFormatter={this.textFormatter(10)}
         />
         <SectionedProgressbar
-          sizePx={300}
-          thickness={50}
-          total={40}
+          sizePx={200}
+          thickness={45}
+          total={30}
           progress={25}
-          sectionsGapPercent={7}
+          sectionsGapPercent={15}
           className="example3"
         >
-        25/40
+        62%
         </SectionedProgressbar>
+        <SectionedProgressbar
+          sizePx={200}
+          thickness={18}
+          total={30}
+          progress={25}
+          sectionsGapPercent={15}
+          className="example4"
+          textFormatter={prog => `${((prog / 30) * 100).toFixed(0)}%`}
+        />
+        <SectionedProgressbar
+          sizePx={200}
+          thickness={18}
+          total={25}
+          progress={10}
+          sectionsGapPercent={99}
+          className="example5"
+          textFormatter={prog => `${((prog / 30) * 100).toFixed(0)}%`}
+        />
       </div>);
   }
 }

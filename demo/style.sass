@@ -1,10 +1,16 @@
 $example3-color: #ee5622
+$example4-color: #df1042
+$example5-color: #bfbf10
 @function fade-color($color)
-	@return desaturate(lighten($color, 30%), 20%)
+	@return desaturate(lighten($color, 30%), 10%)
 
 .showCollection
 	display: flex
 	justify-content: space-around
+
+
+.sectionedProgressBar-text
+		font-family: "Palatino Linotype"
 
 .example1
 	.sectionedProgressBar-section
@@ -15,8 +21,7 @@ $example3-color: #ee5622
 			stroke: green
 
 	.sectionedProgressBar-text
-		font-size: 70px
-		font-family: "Palatino Linotype"
+		font-size: 50px
 
 		stroke: green;
 		fill: green
@@ -29,6 +34,7 @@ $example3-color: #ee5622
 			fill: lightgreen
 			stroke-width: 2px
 
+
 .example2
 	.sectionedProgressBar-section
 		stroke: lightblue
@@ -37,8 +43,7 @@ $example3-color: #ee5622
 			stroke: blue
 
 	.sectionedProgressBar-text
-		font-size: 70px
-		font-family: "Palatino Linotype"
+		font-size: 50px
 
 		stroke: blue;
 		fill: blue
@@ -51,6 +56,7 @@ $example3-color: #ee5622
 			fill: lightblue
 			stroke-width: 2px
 
+
 .example3
 	.sectionedProgressBar-section
 		stroke: fade-color($example3-color)
@@ -59,16 +65,43 @@ $example3-color: #ee5622
 			stroke: $example3-color
 
 	.sectionedProgressBar-text
-		font-size: 70px
-		font-family: "Palatino Linotype"
+		font-size: 40px
 
 		stroke: $example3-color;
 		fill: $example3-color
-		stroke-width: 4px
+		stroke-width: 3px
 		dominant-baseline: central
 		text-anchor: middle
 
-		.total
-			stroke: fade-color($example3-color)
-			fill: fade-color($example3-color)
-			stroke-width: 2px
+.example4
+	.sectionedProgressBar-section
+		stroke: fade-color($example4-color)
+
+		&.active
+			stroke: $example4-color
+
+	.sectionedProgressBar-text
+		font-size: 45px
+
+		stroke: $example4-color;
+		fill: $example4-color
+		stroke-width: 3px
+		dominant-baseline: central
+		text-anchor: middle
+
+.example5
+	.sectionedProgressBar-section
+		stroke: fade-color($example5-color)
+		stroke-linecap: round
+
+		&.active
+			stroke: $example5-color
+
+	.sectionedProgressBar-text
+		font-size: 45px
+
+		stroke: $example5-color;
+		fill: $example5-color
+		stroke-width: 3px
+		dominant-baseline: central
+		text-anchor: middle
